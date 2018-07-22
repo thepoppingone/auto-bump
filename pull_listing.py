@@ -4,6 +4,9 @@ from selenium.common.exceptions import NoSuchElementException
 import requests
 import shutil
 import sys
+import time
+import os
+import csv
 
 # If there are no arguments
 if len(sys.argv) == 1:
@@ -27,18 +30,39 @@ print('Carousell first image download url = '+src)
 title = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/section/div[2]/section[1]/div[1]/div/div[1]/div/p')
 print('Title: '+title.text)
 
+# Item price
+price = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/section/div[2]/section[1]/div[3]/div/div/div/p')
+print('Price: '+price.text)
+
+# Item Category (Weak method)
+category = ''
+new = True
+try:
+    category = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/section/div[2]/section[1]/div[6]/div/div/div/p/a')
+    print('Category: '+category.text)
+except NoSuchElementException:
+    new = False
+    print('This listing is missing the new or old display')
+    category = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/section/div[2]/section[1]/div[5]/div/div/div/p/a')
+    print('Special Case Category: '+category.text)
 # Item decription
+desc = ''
 try:
     desc = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/section/div[2]/section[1]/div[7]/div/div/div/div/div/p')
     print('Description: '+desc.text)
 except NoSuchElementException:
     #print("Unexpected error:", sys.exc_info()[0])
     print('This listing has no description')
+
+writer = csv.writer(open('listingData.csv', 'w'))
+writer.writerow(['title','price','category','desc'])
+writer.writerow([title.text,price.text,category.text,desc.text])
+
+window_before = browser.window_handles[0]
 # download the image
 r = requests.get(src,stream=True, headers={'User-agent': 'Mozilla/5.0'})
 if r.status_code == 200:
     with open("c1.jpg", 'wb') as f:
         r.raw.decode_content = True
         shutil.copyfileobj(r.raw, f)
-
-browser.quit()
+        browser.quit()
