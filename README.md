@@ -5,7 +5,8 @@ Basically you need your environment to be set up right to make this work
 `selenium`
 `chromedriver` 
 
-The above are the basics
+The above are the necessary files and to be safely installed in the env
+Follow installation steps here: `http://selenium-python.readthedocs.io/installation.html`
 
 ### Login Credentials
 These are not stored in the repo, saved in the terminal as environment variables
