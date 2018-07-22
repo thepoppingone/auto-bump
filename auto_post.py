@@ -6,6 +6,15 @@ import shutil
 import sys
 import time
 import os
+import csv
+
+title,price,category,desc = ['','','','']
+# Get data from csv
+with open('listingData.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    firstRow = next(readCSV)
+    secondRow = next(readCSV)
+    title,price,category,desc = secondRow
 
 # open chrome and load targeted page
 browser = webdriver.Chrome()
@@ -56,7 +65,7 @@ nextCatBtn.click()
 
 time.sleep(1)
 searchCatField = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div/div/div/div[1]/div/form/span/input')
-searchCatField.send_keys('Mobile Phones & Tablets - Others')
+searchCatField.send_keys(category)
 
 time.sleep(1)
 catButton = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div/div/div/div[1]/ul/li/button')
@@ -64,11 +73,11 @@ catButton.click()
 
 time.sleep(1)
 listNameField = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[1]/div/section/fieldset[1]/div/div[1]/div[1]/form/span/input')
-listNameField.send_keys('test')
+listNameField.send_keys(title)
 
 time.sleep(1)
 priceNameField = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[1]/div/section/fieldset[1]/div/div[2]/div[1]/form/span[2]/input')
-priceNameField.send_keys('15')
+priceNameField.send_keys(price)
 
 time.sleep(1)
 new = True
@@ -82,13 +91,11 @@ radioBtn.click()
 time.sleep(1)
 
 descTextArea = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[1]/div/section/fieldset[3]/div[2]/div/div[1]/form/span/textarea')
-descTextArea.send_keys('test i want to test')
+descTextArea.send_keys(desc)
 
 time.sleep(1)
 listBtn = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[2]/button')
 listBtn.click()
-
-
 
 
 
