@@ -7,13 +7,18 @@ Your Carousell account must be linked to Facebook due to Carousell's captcha blo
 ## Selenium Python 
 Basically you need your environment to be set up right to make this work
 
-`python`
+`python` -> 2.7 or above
+`chromedriver` -> google how to install and make a symlink in the path to the file itself for python to run
+
+### Pip modules required
 `selenium`
-`chromedriver` 
+`requests`
 
 The above are the necessary files and to be safely installed in the env
 Follow installation steps here: 
 [Selenium Python Installation Guide](http://selenium-python.readthedocs.io/installation.html)
+
+(Also recommended to install virtualenv)
 
 ### Login Credentials
 These are not stored in the repo, saved in the terminal as environment variables
