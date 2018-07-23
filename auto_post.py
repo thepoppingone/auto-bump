@@ -51,7 +51,7 @@ time.sleep(4.5)
 uploadPanel = browser.find_element_by_id('photo0')
 browser.execute_script("arguments[0].setAttribute('class','')", uploadPanel)
 browser.execute_script("arguments[0].style.display = 'block';", uploadPanel)
-imagePath = os.getcwd()+'/c1.jpg'
+imagePath = os.getcwd()+'/c1.png'
 print('Image path: '+imagePath)
 uploadPanel.send_keys(os.path.abspath(imagePath))
 

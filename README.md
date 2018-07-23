@@ -2,6 +2,8 @@
 Carousell now carries out image recognition and remembers that you have previously deleted a listing that looks similar.
 Best to use a different image each time, saved as c1.jpg
 
+Your Carousell account must be linked to Facebook due to Carousell's captcha blocking
+
 ## Selenium Python 
 Basically you need your environment to be set up right to make this work
 
