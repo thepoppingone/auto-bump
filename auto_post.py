@@ -93,6 +93,9 @@ time.sleep(1)
 descTextArea = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[1]/div/section/fieldset[3]/div[2]/div/div[1]/form/span/textarea')
 descTextArea.send_keys(desc)
 
+caroupayBtn = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[1]/div/section/fieldset[4]/div[2]/div[1]/div[1]') 
+caroupayBtn.click()
+
 time.sleep(1)
 listBtn = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[2]/button')
 #listBtn.click()
