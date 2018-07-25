@@ -95,11 +95,6 @@ descTextArea.send_keys(desc)
 
 time.sleep(1)
 listBtn = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[3]/div/div/div[2]/button')
-listBtn.click()
-
-
-
-# webdriver.ActionChains(browser).send_keys(Keys.ESCAPE).perform()
-
+#listBtn.click()
 
 #browser.quit()
