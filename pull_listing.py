@@ -34,7 +34,7 @@ print('Title: '+title.text)
 price = browser.find_element_by_xpath('//*[@id="root"]/div/div[1]/div[2]/div[2]/div[3]/div[1]/div/section/div[2]/section[1]/div[3]/div/div/div/p')
 print('Price: '+price.text)
 
-# Item Category (Weak method)
+# Item Category (Weak method - to be improved to suit more categories)
 category = ''
 new = True
 try:
@@ -54,6 +54,7 @@ except NoSuchElementException:
     #print("Unexpected error:", sys.exc_info()[0])
     print('This listing has no description')
 
+# Saves the data extracted into a csv file
 writer = csv.writer(open('listingData.csv', 'w'))
 writer.writerow(['title','price','category','desc'])
 writer.writerow([title.text,price.text,category.text,desc.text])
@@ -66,3 +67,4 @@ if r.status_code == 200:
         r.raw.decode_content = True
         shutil.copyfileobj(r.raw, f)
         browser.quit()
+        print('Extration of data from Carousell listing is now complete.')
